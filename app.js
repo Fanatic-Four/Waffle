@@ -54,21 +54,20 @@ app.post('/signup', function(req, res) {
   var lName = req.body.lName;
   var phone = req.body.phone;
 
+  console.log("Signup page reached");
+
   var newUser = userCol.createUser(username, password, fName, lName, phone);
   if (newUser) {
     //Success!
     console.log("Success on signup");
     res.send("Success");
-    res.redirect('/main');
+    //res.redirect('/main');
   }
   else {
     console.log("Failure to signup");
     res.send("Failure. User already exists");
-    res.redirect('/');
+    //res.redirect('/');
   }
-
-
-
 });
 
 app.listen(app.get('port'), function() {
