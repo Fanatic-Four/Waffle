@@ -109,7 +109,7 @@ app.get('/events', function(req, res) {
   console.log(currentEvents);
 
   res.render('events', {
-    events: currentEvents
+    events: currentEvents,
   });
 });
 
@@ -138,6 +138,20 @@ app.get('/winner', function(req, res) {
   }
 
   res.send("failure");
+});
+
+app.post('/add-event', function(req, res) {
+  var creator = req.body.creator;
+  var eventName = req.body.name;
+  var desc = req.body.desc;
+
+  creator = userCol.getUsers()[creator];
+
+  console.log(eventCol.createEvent(creator, eventName, desc));
+  console.log(eventCol.getEvents());
+
+  res.redirect('/events');
+
 });
 
 app.listen(app.get('port'), function() {

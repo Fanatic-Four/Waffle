@@ -6,6 +6,41 @@
     Here are the current events happening!
   </h1>
 
+  <div>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="margin-bottom: 8px;">
+      Create an event here!
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="text-align: center;">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title" id="myModalLabel">Create Event</h4>
+          </div>
+
+          <form class="form" method="post" action="/add-event">
+            <div class="modal-body event-modal">
+              <input type="text" name="creator" placeholder="Organizer"> <br>
+              <input type="text" name="name" placeholder="Name of Event"> <br>
+              <input type="text" name="desc" placeholder="Description of Event"> <br>
+            </div>
+
+            <button class="btn btn-primary" style="margin: 4px;">Create Event</button>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
   <div class="col-md-2">
 
   </div>
