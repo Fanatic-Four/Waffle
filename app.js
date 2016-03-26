@@ -49,6 +49,7 @@ var event1 = eventCol.createEvent(user, "name1", "desc1");
 var event2 = eventCol.createEvent(user, "name2", "desc2");
 var event3 = eventCol.createEvent(user, "name3", "desc3");
 var event4 = eventCol.createEvent(myat, "name4", "desc4");
+var event5 = eventCol.createEvent(myat, "name5", "desc5");
 
 eventCol.addUser(event1, user, 101);
 eventCol.addUser(event1, user, 102);
@@ -107,6 +108,7 @@ app.post('/signup', function(req, res) {
 app.get('/events', function(req, res) {
 
   var username = req.query.username;
+  var currentUser = userCol.getUsers()[username];
   var attending = userCol.getUsers()[username].events;
 
   //console.log(attending);
@@ -142,7 +144,8 @@ app.get('/events', function(req, res) {
   res.render('events', {
     hosted: hosted,
     attending: attending,
-    other: other
+    other: other,
+    currentUser: currentUser
   });
 });
 
@@ -348,6 +351,40 @@ app.post('/android-add-event', function(req, res) {
   eventCol.createEvent(creator, eventName, desc);
 
   res.send("Successfully added event.");
+});
+
+app.post('/join', function(req, res) {
+  var eventID = req.body.eventID;
+  var username = req.body.username;
+  var number = req.body.number;
+
+  var currentEvents = eventCol.getEvents();
+
+  var rendered = false;
+
+  for (var i = 0; i < currentEvents.length; i++) {
+    if ("" + currentEvents[i].id === "" + eventID) {
+
+      var users = userCol.getUsers();
+      var correctUser;
+
+      for (var j = 0; j < users.length; j++) {
+        if (users[j].username === username) {
+          correctUser = users[j];
+        }
+      }
+
+      eventCol.addUser(currentEvents[i], correctUser, number);
+      userCol.addEvent(correctUser, currentEvents[i], number);
+      res.redirect('/events?username=' + username);
+      rendered = true;
+    }
+  }
+
+  if (!rendered) {
+      res.redirect('/');
+  }
+
 });
 
 app.listen(app.get('port'), function() {

@@ -97,6 +97,14 @@
               </li>
             {{/each}}
           </ul>
+
+          <form method="post" action="/join" style="margin-top: 15%; margin-bottom: 15%;">
+            <input type="text" placeholder="username" name="username" value={{this.mEvent.currentUser}}>
+            <input type="hidden" name="eventID" value={{this.mEvent.id}}>
+            <input type="text" placeholder="Enter Number" name="number">
+            <button class="btn-primary"> Join </button>
+          </form>
+
         </div>
       </div>
     {{/each}}
@@ -118,6 +126,14 @@
               </li>
             {{/each}}
           </ul>
+
+          <form method="post" action="/join" style="margin-top: 15%; margin-bottom: 15%;">
+            <input type="text" placeholder="username" name="username" value={{this.currentUser}}>
+            <input type="hidden" name="eventID" value={{this.id}}>
+            <input type="text" placeholder="Enter Number" name="number">
+            <button class="btn-primary"> Join </button>
+          </form>
+
         </div>
       </div>
     {{/each}}
