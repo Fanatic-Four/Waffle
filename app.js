@@ -116,8 +116,23 @@ app.get('/android-events', function(req, res) {
 
 app.get('/winner', function(req, res) {
   var eventID = req.query.id;
-  console.log(eventID);
-  res.send("success");
+  var winningNum = req.query.winner;
+  var currentEvents = eventCol.getEvents();
+
+  for (var i = 0; i < currentEvents.length; i++) {
+    if (currentEvents[i].id === eventID) {
+
+      var attendees = currentEvents[i].attendees;
+
+      for (var j = 0; j < attendees.length; j++) {
+        if (attendees[j].number === winningNum) {
+          res.send(attendees.user.username);
+        }
+      }
+    }
+  }
+
+  res.send("failure");
 });
 
 app.listen(app.get('port'), function() {
