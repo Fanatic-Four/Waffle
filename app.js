@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+var handlebars = require('express-handlebars');
 
 app.set('port', (process.env.PORT || 3000));
 
@@ -11,16 +12,18 @@ var eventCol = require('./lib/events.js');
 // The body parser is used to parse the body of an HTTP request.
 var bodyParser = require('body-parser');
 
+//Handlebars
+var view = handlebars.create();
+app.engine('handlebars', view.engine);
+app.set('view engine', 'handlebars');
+
+
 // Body Parser:
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-// views is directory for all template files
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
-
 app.get('/', function(req, res) {
-  res.render('pages/index');
+  res.render('index');
 });
 
 app.post('/login', function(req, res) {

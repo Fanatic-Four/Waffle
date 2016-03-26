@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="css/index.css" type="text/css" rel="stylesheet">
+  </head>
+
+  <body>
+    <div class="container page" style="text-align: center;">
+
+      <div class="intro">
+        <h1>
+          Welcome to Waffle
+        </h1>
+      </div>
+
+      <div class="col-md-4">
+
+      </div>
+
+      <div class="login col-md-4">
+        <form class="form" method="post" action="/login">
+          <input type="text" name="username" placeholder="Username"> <br>
+          <input type="password" name="password" placeholder="Password"> <br>
+
+          <button class="btn btn-primary">Login</button>
+        </form>
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+          Signup
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="text-align: center;">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Sign Up</h4>
+              </div>
+
+              <form class="form" method="post" action="/signup">
+                <div class="modal-body">
+                  <input type="text" name="name" placeholder="Username"> <br>
+                  <input type="password" name="pass" placeholder="Password"> <br>
+                  <input type="text" name="fName" placeholder="First Name"> <br>
+                  <input type="text" name="lName" placeholder="Last Name"> <br>
+                  <input type="tel" name="phone" placeholder="Phone Number"> <br>
+                </div>
+
+                <button class="btn btn-primary">Save changes</button>
+
+              </form>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="col-md-4">
+
+      </div>
+
+
+    </div>
+
+    <script   src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
