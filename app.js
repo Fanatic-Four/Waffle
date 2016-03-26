@@ -179,6 +179,8 @@ app.get('/android-events', function(req, res) {
   res.send("" + result);
 });
 
+
+var twilio = require('./lib/twilio_msg.js');
 app.get('/winner', function(req, res) {
   var eventID = req.query.id;
   var winningNum = req.query.winner;
@@ -199,6 +201,7 @@ app.get('/winner', function(req, res) {
 
         if ("" + attendees[j].number === "" + winningNum) {
           res.send("Username: " + attendees[j].user.username + " | Phone Number: "  + attendees[j].user.phone);
+          twilio.sendMessage(attendees[j].user.username, attendees[j].user.phone)
           sent = true;
         }
       }
