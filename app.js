@@ -3,6 +3,8 @@ var app = express();
 var http = require ('http');
 var mongoose = require ("mongoose");
 
+app.use(express.static(__dirname + '/public'));
+
 var uristring = 'mongodb://heroku_xvxr827b:735klrc3ennhtqa8b1u2437fo2@ds025459.mlab.com:25459/heroku_xvxr827b';
 mongoose.connect(uristring, function (err, res) {
     if (err) {
@@ -14,8 +16,6 @@ mongoose.connect(uristring, function (err, res) {
 var handlebars = require('express-handlebars');
 
 app.set('port', (process.env.PORT || 3000));
-
-app.use(express.static(__dirname + '/public'));
 
 var userCol = require('./lib/users.js');
 var eventCol = require('./lib/events.js');
@@ -90,7 +90,7 @@ app.post('/signup', function(req, res) {
 
 app.get('/events', function(req, res) {
 
-  var currentEvents = eventCol.getEvents();  
+  var currentEvents = eventCol.getEvents();
 
   console.log(currentEvents);
 
