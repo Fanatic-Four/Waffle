@@ -1,0 +1,19 @@
+.intro {
+  color: #96BBCB;
+  margin-top: 16%;
+}
+
+.page {
+  text-align: center;
+  width: 1000px;
+}
+
+.login {
+  text-align: center;
+  border: 1px solid #909eb4;
+  padding: 30px;
+}
+
+.login * {
+  margin: 3px;
+}
