@@ -265,12 +265,12 @@ app.get('/android-events', function(req, res) {
 
 
 var twilio = require('./lib/twilio_msg.js');
-app.get('/winner', function(req, res) {
+app.post('/winner', function(req, res) {
   var eventID = req.query.id;
-  var winningNum = req.query.winner;
+  //var winningNum = req.query.winner;
 
   ///var eventID = req.body.id;
-  //var winningNum = req.body.winner;
+  var winningNum = req.body.winner;
 
   var currentEvents = eventCol.getEvents();
 
@@ -312,6 +312,29 @@ app.post('/add-event', function(req, res) {
   eventCol.createEvent(creator, eventName, desc);
 
   res.redirect('/events?username=' + creator.username);
+
+});
+
+app.get('/announce', function(req, res) {
+  var eventID = req.query.eventID;
+
+  var currentEvents = eventCol.getEvents();
+
+  var rendered = false;
+
+  for (var i = 0; i < currentEvents.length; i++) {
+    if ("" + currentEvents[i].id === "" + eventID) {
+      res.render('announce', {
+        eventName: currentEvents[i].name,
+        eventID: eventID
+      });
+      rendered = true;
+    }
+  }
+
+  if (!rendered) {
+      res.redirect('/');
+  }
 
 });
 

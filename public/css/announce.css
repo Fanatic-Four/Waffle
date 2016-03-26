@@ -1,0 +1,9 @@
+.announce {
+  text-align: center;
+  margin-top: 12%;
+}
+
+.announceBox {
+  border: 2px solid #909eb4;
+  padding: 10px;
+}
