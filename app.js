@@ -48,11 +48,11 @@ app.post('/login', function(req, res) {
 });
 
 app.post('/signup', function(req, res) {
-  var username = req.name;
-  var password = req.pass;
-  var fName = req.fName;
-  var lName = req.lName;
-  var phone = req.phone;
+  var username = req.body.name;
+  var password = req.body.pass;
+  var fName = req.body.fName;
+  var lName = req.body.lName;
+  var phone = req.body.phone;
 
   var newUser = userCol.createUser(username, password, fName, lName, phone);
   if (newUser) {
