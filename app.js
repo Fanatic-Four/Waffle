@@ -1,5 +1,16 @@
 var express = require('express');
 var app = express();
+var http = require ('http');
+var mongoose = require ("mongoose");
+
+var uristring = 'mongodb://waffle-user:waffle-user@ds025459.mlab.com:25459/heroku_xvxr827b';
+mongoose.connect(uristring, function (err, res) {
+  if (err) {
+    console.log ('ERROR connecting to: ' + uristring + '. ' + err);
+  } else {
+    console.log ('Succeeded connected to: ' + uristring);
+  }
+});
 
 app.set('port', (process.env.PORT || 3000));
 
@@ -14,6 +25,10 @@ app.set('view engine', 'ejs');
 
 app.get('/', function(req, res) {
   response.render('pages/index');
+});
+
+app.get('/test', function(req, res) {
+    userCol.createUser("myatnoe", "password", "MyatNoe", "Aint", "6176429478", [])
 });
 
 app.post('/login', function(req, res) {
@@ -39,7 +54,7 @@ app.post('/signup', function(req, res) {
   var lName = req.body.lName;
   var phone = req.body.phone;
 
-  
+
 
 });
 
