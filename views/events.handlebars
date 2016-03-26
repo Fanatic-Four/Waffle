@@ -1,9 +1,24 @@
-<div class="page">
-  <div class="eventList">
+<link href="css/events.css" type="text/css" rel="stylesheet">
+
+<div class="page container">
+
+  <h1>
+    Here are the current events happening!
+  </h1>
+
+  <div class="col-md-2">
+
+  </div>
+
+  <div class="eventList col-md-8">
     {{#each events}}
       <h2>
-        {{this}}
+        {{this.desc}}
       </h2>
     {{/each}}
+  </div>
+
+  <div class="col-md-2">
+
   </div>
 </div>

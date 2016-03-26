@@ -40,6 +40,12 @@ app.get('/test', function(req, res) {
     userCol.createUser("myatnoe", "password", "MyatNoe", "Aint", "6176429478", [])
 });
 
+//Testing for dummy events:
+var event1 = eventCol.createEvent("user", "name1", "desc1");
+var event2 = eventCol.createEvent("user", "name2", "desc2");
+var event3 = eventCol.createEvent("user", "name3", "desc3");
+var event4 = eventCol.createEvent("user", "name4", "desc4");
+
 app.post('/login', function(req, res) {
 
     console.log(req);
