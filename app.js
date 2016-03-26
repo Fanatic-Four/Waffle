@@ -151,20 +151,31 @@ app.get('/winner', function(req, res) {
   var winningNum = req.query.winner;
   var currentEvents = eventCol.getEvents();
 
-  for (var i = 0; i < currentEvents.length; i++) {
-    if (currentEvents[i].id === eventID) {
+  console.log(eventID);
+  console.log(winningNum);
+
+  var sent = false;
+
+  for (var i = 0; i < currentEvents.length; i++) {    
+
+    if ("" + currentEvents[i].id === "" + eventID) {
 
       var attendees = currentEvents[i].attendees;
 
       for (var j = 0; j < attendees.length; j++) {
-        if (attendees[j].number === winningNum) {
-          res.send(attendees.user.username);
+
+        if ("" + attendees[j].number === "" + winningNum) {
+          res.send("Username: " + attendees[j].user.username + " | Phone Number: "  + attendees[j].user.phone);
+          sent = true;
         }
       }
     }
   }
 
-  res.send("failure");
+  if (!sent) {
+      res.send("No winner found");
+  }
+
 });
 
 app.post('/add-event', function(req, res) {
@@ -174,11 +185,18 @@ app.post('/add-event', function(req, res) {
 
   creator = userCol.getUsers()[creator];
 
-  console.log(eventCol.createEvent(creator, eventName, desc));
-  console.log(eventCol.getEvents());
-
   res.redirect('/events');
 
+});
+
+app.post('/android-add-event', function(req, res) {
+  var creator = req.body.creator;
+  var eventName = req.body.name;
+  var desc = req.body.desc;
+
+  creator = userCol.getUsers()[creator];
+
+  res.send("Successfully added event.");
 });
 
 app.listen(app.get('port'), function() {
