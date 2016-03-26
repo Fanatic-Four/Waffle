@@ -72,12 +72,11 @@ app.post('/login', function(req, res) {
 
     if (users[username] && users[username].password === password) {
         console.log("Success on login");
-        res.send('Success');
-        res.redirect('/main');
+        res.redirect('/events?username=' + username);
     }
     else {
         console.log("Failure to login");
-        res.send('Failure');
+        res.redirect('/');
     }
 
 });
@@ -95,13 +94,11 @@ app.post('/signup', function(req, res) {
     if (newUser) {
         //Success!
         console.log("Success on signup");
-        res.send("Success");
-        //res.redirect('/main');
+        res.redirect('/events?username=' + username);
     }
     else {
         console.log("Failure to signup");
-        res.send("Failure. User already exists");
-        //res.redirect('/');
+        res.redirect('/');
     }
 });
 
@@ -291,8 +288,12 @@ app.post('/winner', function(req, res) {
       for (var j = 0; j < attendees.length; j++) {
 
         if ("" + attendees[j].number === "" + winningNum) {
-          res.send("Username: " + attendees[j].user.username + " | Phone Number: "  + attendees[j].user.phone);
-          twilio.sendMessage(attendees[j].user.username, attendees[j].user.phone, currentEvents[i].name);
+          var message = twilio.sendMessage(attendees[j].user.username, attendees[j].user.phone, currentEvents[i].name, currentEvents[i].desc);
+          res.render('winner', {
+            username: attendees[j].user.username,
+            phone: attendees[j].user.phone,
+            message: message
+          });
           sent = true;
         }
       }
