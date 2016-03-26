@@ -37,23 +37,25 @@ app.get('/', function(req, res) {
 });
 
 app.get('/test', function(req, res) {
-    userCol.createUser("myatnoe", "password", "MyatNoe", "Aint", "6176429478", [])
-    res.render('index')
+    userCol.createUser("myatnoe", "password", "MyatNoe", "Aint", "6176429478", []);
+    res.render('index');
 });
 
 //Testing for dummy events:
 var user = userCol.createUser("user", "password", "MyatNoe", "Aint", "6176429478");
+var myat = userCol.createUser("myatnoe", "password", "MyatNoe", "Aint", "6176429478", []);
 
 var event1 = eventCol.createEvent(user, "name1", "desc1");
 var event2 = eventCol.createEvent(user, "name2", "desc2");
 var event3 = eventCol.createEvent(user, "name3", "desc3");
-var event4 = eventCol.createEvent(user, "name4", "desc4");
+var event4 = eventCol.createEvent(myat, "name4", "desc4");
 
 eventCol.addUser(event1, user, 101);
 eventCol.addUser(event1, user, 102);
 eventCol.addUser(event1, user, 103);
 
-userCol.addEvent("user", event1, 101);
+eventCol.addUser(event4, user, 100);
+userCol.addEvent(user.username, event4, 100);
 
 app.post('/login', function(req, res) {
 
@@ -107,6 +109,8 @@ app.get('/events', function(req, res) {
   var username = req.query.username;
   var attending = userCol.getUsers()[username].events;
 
+  //console.log(attending);
+
   var currentEvents = eventCol.getEvents();
   var hosted = [];
 
@@ -117,17 +121,28 @@ app.get('/events', function(req, res) {
       hosted.push(currentEvents[i]);
     }
     else {
-      for (var j = 0; j < attending.length; j++) {
+      var isAttending = false;
 
+      for (var j = 0; j < attending.length; j++) {        
+        if(attending[j].mEvent.id === currentEvents[i].id || currentEvents[i].creator.username === username) {
+          isAttending = true;
+        }
       }
-      currentEvents[i].creator.attendees;
+
+      if (!isAttending) {
+          other.push(currentEvents[i]);
+      }
     }
   }
 
-  console.log(currentEvents);
+  //console.log(currentEvents);
+
+  //console.log(other);
 
   res.render('events', {
-    events: currentEvents,
+    hosted: hosted,
+    attending: attending,
+    other: other
   });
 });
 

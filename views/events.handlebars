@@ -46,10 +46,52 @@
   </div>
 
   <div class="eventList col-md-8">
-    {{#each events}}
+    {{#each hosted}}
       <div class="event container">
         <div class="col-md-3">
           Event: {{this.name}}
+          <br>
+          Organized by you
+          <br>
+          Brief Description: {{this.desc}}
+        </div>
+
+        <div class="col-md-9" style="text-align: left;">
+          <ul>
+            {{#each this.attendees}}
+              <li>
+                Participant: {{this.user.username}} | Raffle Number: {{this.number}}
+              </li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    {{/each}}
+    {{#each attending}}
+      <div class="event container">
+        <div class="col-md-3">
+          Event: {{this.mEvent.name}} | You are attending!
+          <br>
+          Organized by: {{this.mEvent.creator.username}}
+          <br>
+          Brief Description: {{this.mEvent.desc}}
+        </div>
+
+        <div class="col-md-9" style="text-align: left;">
+          <ul>
+            {{#each this.mEvent.attendees}}
+              <li>
+                Participant: {{this.user.username}} | Raffle Number: {{this.number}}
+              </li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    {{/each}}
+    {{#each other}}
+      <div class="event container">
+        <div class="col-md-3">
+          Event: {{this.name}} | Click to join!
           <br>
           Organized by: {{this.creator.username}}
           <br>
