@@ -39,6 +39,7 @@ app.get('/', function(req, res) {
 
 app.get('/test', function(req, res) {
     userCol.createUser("myatnoe", "password", "MyatNoe", "Aint", "6176429478", [])
+    res.render('index')
 });
 
 app.post('/login', function(req, res) {
