@@ -115,7 +115,7 @@ app.post('/signup', function(req, res) {
 app.get('/events', function(req, res) {
 
   var username = req.query.username;
-  var currentUser = userCol.getUsers()[username];
+  var currentUser = userCol.getUsers()[username];  
   var attending = userCol.getUsers()[username].events;
 
   //console.log(attending);

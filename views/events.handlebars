@@ -43,9 +43,9 @@
 
           <form class="form" method="post" action="/add-event">
             <div class="modal-body event-modal">
-              <input type="text" name="creator" placeholder="Organizer"> <br>
+              <input type="hidden" name="creator" placeholder="Organizer" value={{currentUser.username}}>
               <input type="text" name="name" placeholder="Name of Event"> <br>
-              <input type="text" name="desc" placeholder="Description of Event"> <br>
+              <input type="paragraph" name="desc" placeholder="Description of Event"> <br>
             </div>
 
             <button class="btn btn-primary" style="margin: 4px;">Create Event</button>
@@ -156,6 +156,7 @@
         </div>
       </div>
     {{/each}}
+
     {{#each other}}
       <div class="event container">
         <div class="col-md-4">
@@ -190,7 +191,7 @@
           </ul>
 
           <form method="post" action="/join" style="margin-top: 15%; margin-bottom: 15%;">
-            <input type="text" placeholder="username" name="username" value={{this.currentUser}}>
+            <input type="hidden" placeholder="username" name="username" value={{../currentUser.username}}>
             <input type="hidden" name="eventID" value={{this.id}}>
             <input type="text" placeholder="Enter Number" name="number">
             <button class="btn-primary"> Join </button>
