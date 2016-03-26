@@ -113,7 +113,7 @@ app.get('/events', function(req, res) {
   });
 });
 
-app.get('/android-events', function(req, res) {
+app.get('/android', function(req, res) {
   var currentEvents = eventCol.getEvents();
 
   res.send("" + currentEvents);
