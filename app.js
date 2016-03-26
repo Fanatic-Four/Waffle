@@ -47,6 +47,10 @@ var event2 = eventCol.createEvent("user", "name2", "desc2");
 var event3 = eventCol.createEvent("user", "name3", "desc3");
 var event4 = eventCol.createEvent("user", "name4", "desc4");
 
+eventCol.addUser(event1, "dude", 101);
+eventCol.addUser(event1, "dude2", 102);
+eventCol.addUser(event1, "dude3", 103);
+
 app.post('/login', function(req, res) {
 
     console.log(req);
@@ -103,6 +107,18 @@ app.get('/events', function(req, res) {
   res.render('events', {
     events: currentEvents
   });
+});
+
+app.get('/android-events', function(req, res) {
+  var currentEvents = eventCol.getEvents();
+
+  res.send(currentEvents);
+})
+
+app.get('/winner', function(req, res) {
+  var eventID = req.query.id;
+  console.log(eventID);
+  res.send("success");
 });
 
 app.listen(app.get('port'), function() {
