@@ -116,7 +116,34 @@ app.get('/events', function(req, res) {
 app.get('/android', function(req, res) {
   var currentEvents = eventCol.getEvents();
 
-  res.send("" + currentEvents);
+  var result = "";
+
+  for (var i = 0; i < currentEvents.length; i++) {
+    result += currentEvents[i].creator.username + ", ";
+    result += currentEvents[i].name + ", ";
+
+    if (currentEvents[i].attendees.length > 0) {
+      result += currentEvents[i].desc + ", ";
+      result += "Attendees: ";
+
+      for (var j = 0; j < currentEvents[i].attendees.length; j++) {
+          if (j < currentEvents[i].attendees.length - 1) {
+              result += currentEvents[i].attendees[j].user.username + ", ";
+          }
+          else {
+              result += currentEvents[i].attendees[j].user.username;
+          }
+      }
+    }
+    else {
+      result += currentEvents[i].desc + "";
+    }
+
+
+    result += "\n | ";
+  }
+
+  res.send("" + result);
 });
 
 app.get('/winner', function(req, res) {
