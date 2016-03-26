@@ -1,8 +1,17 @@
 .page {
   width: 1000px;
   text-align: center;
+  color: #96BBCB;
 }
 
 .eventList {
   border: 1px solid #909eb4;
+}
+
+.event {
+  color: #1a8cff;
+  border-bottom: 1px solid #909eb4;
+  width: 100%;
+  padding-top: 2%;
+  padding-bottom: 2%;
 }

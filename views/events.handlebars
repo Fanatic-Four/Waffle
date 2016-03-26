@@ -12,17 +12,24 @@
 
   <div class="eventList col-md-8">
     {{#each events}}
-      <div class="event">
-        {{this.name}}
-        {{this.creator}}
-        {{this.desc}}
-        <ul>
-          {{#each this.attendees}}
-            <li>
-              User: {{this.user}} | Number: {{this.number}}
-            </li>
-          {{/each}}
-        </ul>
+      <div class="event container">
+        <div class="col-md-3">
+          Event: {{this.name}}
+          <br>
+          Organized by: {{this.creator.username}}
+          <br>
+          Brief Description: {{this.desc}}
+        </div>
+
+        <div class="col-md-9" style="text-align: left;">
+          <ul>
+            {{#each this.attendees}}
+              <li>
+                Participant: {{this.user.username}} | Raffle Number: {{this.number}}
+              </li>
+            {{/each}}
+          </ul>
+        </div>
       </div>
     {{/each}}
   </div>

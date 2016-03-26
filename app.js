@@ -44,14 +44,14 @@ app.get('/test', function(req, res) {
 //Testing for dummy events:
 var user = userCol.createUser("user", "password", "MyatNoe", "Aint", "6176429478");
 
-var event1 = eventCol.createEvent("user", "name1", "desc1");
-var event2 = eventCol.createEvent("user", "name2", "desc2");
-var event3 = eventCol.createEvent("user", "name3", "desc3");
-var event4 = eventCol.createEvent("user", "name4", "desc4");
+var event1 = eventCol.createEvent(user, "name1", "desc1");
+var event2 = eventCol.createEvent(user, "name2", "desc2");
+var event3 = eventCol.createEvent(user, "name3", "desc3");
+var event4 = eventCol.createEvent(user, "name4", "desc4");
 
-eventCol.addUser(event1, "dude", 101);
-eventCol.addUser(event1, "dude2", 102);
-eventCol.addUser(event1, "dude3", 103);
+eventCol.addUser(event1, user, 101);
+eventCol.addUser(event1, user, 102);
+eventCol.addUser(event1, user, 103);
 
 userCol.addEvent("user", event1, 101);
 
