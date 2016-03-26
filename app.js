@@ -42,12 +42,12 @@ app.get('/test', function(req, res) {
 });
 
 //Testing for dummy events:
-var dummy1 = userCol.createUser("John", "password", "John", "Parker", "7322771111");
-var dummy2 = userCol.createUser("myatnoe", "password", "MyatNoe", "Aint", "7322771111", []);
-var dummy3 = userCol.createUser("Wayde", "password", "Wayde", "Smith", "7322771111");
-var dummy4 = userCol.createUser("Brian", "password", "Brian", "Cooper", "7322771111");
-var dummy5 = userCol.createUser("Edison", "password", "Edison", "Hatley", "7322771111");
-var dummy6 = userCol.createUser("Charlie", "password", "Charlie", "Baker", "7322771111");
+var dummy1 = userCol.createUser("John", "password", "John", "Parker", "6176429478");
+var dummy2 = userCol.createUser("myatnoe", "password", "MyatNoe", "Aint", "6176429478");
+var dummy3 = userCol.createUser("Wayde", "password", "Wayde", "Smith", "6176429478");
+var dummy4 = userCol.createUser("Brian", "password", "Brian", "Cooper", "6176429478");
+var dummy5 = userCol.createUser("Edison", "password", "Edison", "Hatley", "6176429478");
+var dummy6 = userCol.createUser("Charlie", "password", "Charlie", "Baker", "6176429478");
 
 var event1 = eventCol.createEvent(dummy1, "Chocolate Raffle", "Raffle for chocolate! If you are the winner, please email me at jparker@chocolate.com with a picture of your ticket.");
 var event2 = eventCol.createEvent(dummy2, "Super Bowl Raffle", "Raffle for $$ for the superbowl!! If you are the winner, please email me at myatnoe@superbowl.com with a picture of your ticket.");
