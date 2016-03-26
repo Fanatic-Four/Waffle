@@ -117,7 +117,7 @@ app.get('/android-events', function(req, res) {
   var currentEvents = eventCol.getEvents();
 
   res.send(currentEvents);
-})
+});
 
 app.get('/winner', function(req, res) {
   var eventID = req.query.id;
