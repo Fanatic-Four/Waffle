@@ -10,7 +10,8 @@
     "body-parser": "^1.15.0",
     "ejs": "^2.3.3",
     "express": "4.13.3",
-    "handlebars": "^4.0.5"
+    "handlebars": "^4.0.5",
+    "mongoose": "^4.4.10"
   },
   "engines": {
     "node": "0.12.7"

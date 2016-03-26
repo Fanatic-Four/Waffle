@@ -89,7 +89,14 @@ app.post('/signup', function(req, res) {
 });
 
 app.get('/events', function(req, res) {
-  
+
+  var currentEvents = eventCol.getEvents();  
+
+  console.log(currentEvents);
+
+  res.render('events', {
+    events: currentEvents
+  });
 });
 
 app.listen(app.get('port'), function() {
