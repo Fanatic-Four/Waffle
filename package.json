@@ -2,9 +2,9 @@
   "name": "waffle-server",
   "version": "0.1.5",
   "description": "Waffle Server",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node app.js"
   },
   "dependencies": {
     "ejs": "^2.3.3",
