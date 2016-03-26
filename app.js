@@ -53,8 +53,8 @@ var event1 = eventCol.createEvent(dummy1, "Chocolate Raffle", "Raffle for chocol
 var event2 = eventCol.createEvent(dummy2, "Super Bowl Raffle", "Raffle for $$ for the superbowl!! If you are the winner, please email me at myatnoe@superbowl.com with a picture of your ticket.");
 var event3 = eventCol.createEvent(dummy3, "Ice Cream Raffle", "Raffle for ice cream!! If you are the winner, please email me at wsmith@icecream.com with a picture of your ticket.");
 var event4 = eventCol.createEvent(dummy4, "Board Games Raffle", "Raffle for cards against humanity!! If you are the winner, please email me at boardgames@cah.com with a picture of your ticket.");
-var event5 = eventCol.createEvent(dummy5, "Whiteboard Raffle", "Raffle for ");
-var event5 = eventCol.createEvent(dummy6, "Oculus Rift Raffle", "desc5");
+var event5 = eventCol.createEvent(dummy5, "Whiteboard Raffle", "Raffle for a whiteboard!! If you are the winner, please email me at raffle@whiteboards.com with a picture of your ticket.");
+var event5 = eventCol.createEvent(dummy6, "Oculus Rift Raffle", "Raffle for an Oculus Rift!! If you are the winner, please email me at riffle@oculus.com with a picture of your ticket.");
 
 eventCol.addUser(event1, dummy6, 101);
 userCol.addEvent(dummy6, event1, 101);

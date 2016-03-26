@@ -1,11 +1,12 @@
 .page {
-  width: 1000px;
+  width: 1200px;
   text-align: center;
   color: #96BBCB;
 }
 
 .eventList {
   border: 1px solid #909eb4;
+  border-radius: 10px;
 }
 
 .event {

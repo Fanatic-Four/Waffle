@@ -1,5 +1,21 @@
 <link href="css/events.css" type="text/css" rel="stylesheet">
 
+<div class="header" style="background-color: #337AB7; color: white; float: right; width: 100%; margin-bottom: 20px;">
+
+  <a href="/" style="text-decoration: none; color: white;">
+    <h2 style="float: left; padding-top 0px; margin-top: 5px; margin-bottom: 5px; margin-left: 10px; ">
+      Waffle
+    </h2>
+  </a>
+
+  <a href="/" style="text-decoration: none; color: white;">
+    <h2 style="float: right; padding-top 0px; margin-top: 5px; margin-bottom: 5px; margin-right: 10px; background-color: #337AB7;">
+      Logout
+    </h2>
+  </a>
+
+</div>
+
 <div class="page container">
 
   <h1>
@@ -52,15 +68,29 @@
 
     {{#each hosted}}
       <div class="event container">
-        <div class="col-md-3">
-          Event: {{this.name}}
-          <br>
-          Organized by you
-          <br>
-          Brief Description: {{this.desc}}
+        <div class="col-md-4">
+          <h2 style="">
+            Event:
+          </h2>
+
+          <h3>
+            {{this.name}}
+          </h3>
+
+          <h2 style="">
+            Organizer:
+          </h2>
+          <h3>
+            You!
+          </h3>
+
+          <h2 style="">
+            Brief Description:
+          </h2>
+          {{this.desc}}
         </div>
 
-        <div class="col-md-9" style="text-align: left;">
+        <div class="col-md-8" style="text-align: center; margin-top: 15%;">
           <ul>
             {{#each this.attendees}}
               <li>
@@ -81,15 +111,31 @@
     {{/each}}
     {{#each attending}}
       <div class="event container">
-        <div class="col-md-3">
-          Event: {{this.mEvent.name}} | You are attending!
-          <br>
-          Organized by: {{this.mEvent.creator.username}}
-          <br>
-          Brief Description: {{this.mEvent.desc}}
+        <div class="col-md-4">
+
+          <h2 style="">
+            Event:
+          </h2>
+
+          <h3>
+            {{this.mEvent.name}} | You are attending!
+          </h3>
+
+          <h2 style="">
+            Organizer:
+          </h2>
+          <h3>
+            {{this.mEvent.creator.username}}
+          </h3>
+
+          <h2 style="">
+            Brief Description:
+          </h2>
+          {{this.mEvent.desc}}
+
         </div>
 
-        <div class="col-md-9" style="text-align: left;">
+        <div class="col-md-8" style="text-align: center; margin-top: 15%;">
           <ul>
             {{#each this.mEvent.attendees}}
               <li>
@@ -110,15 +156,29 @@
     {{/each}}
     {{#each other}}
       <div class="event container">
-        <div class="col-md-3">
-          Event: {{this.name}} | Click to join!
-          <br>
-          Organized by: {{this.creator.username}}
-          <br>
-          Brief Description: {{this.desc}}
+        <div class="col-md-4">
+          <h2 style="">
+            Event:
+          </h2>
+
+          <h3>
+            {{this.name}}
+          </h3>
+
+          <h2 style="">
+            Organizer:
+          </h2>
+          <h3>
+            {{this.creator.username}}
+          </h3>
+
+          <h2 style="">
+            Brief Description:
+          </h2>
+          {{this.desc}}
         </div>
 
-        <div class="col-md-9" style="text-align: left;">
+        <div class="col-md-8" style="text-align: center; margin-top: 15%;">
           <ul>
             {{#each this.attendees}}
               <li>
