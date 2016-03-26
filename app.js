@@ -42,7 +42,7 @@ app.get('/test', function(req, res) {
 });
 
 //Testing for dummy events:
-var user = userCol.createUser("myatnoe", "password", "MyatNoe", "Aint", "6176429478");
+var user = userCol.createUser("user", "password", "MyatNoe", "Aint", "6176429478");
 
 var event1 = eventCol.createEvent("user", "name1", "desc1");
 var event2 = eventCol.createEvent("user", "name2", "desc2");
@@ -53,7 +53,7 @@ eventCol.addUser(event1, "dude", 101);
 eventCol.addUser(event1, "dude2", 102);
 eventCol.addUser(event1, "dude3", 103);
 
-userCol.addEvent(user, event1, 101);
+userCol.addEvent("user", event1, 101);
 
 app.post('/login', function(req, res) {
 
