@@ -176,19 +176,20 @@ app.get('/android-events', function(req, res) {
     }
   }
 
-  var hostedResult = "Organizing: ";
+  var hostedResult = "";
 
   for (var i = 0; i < hosted.length; i++) {
-    hostedResult += hosted[i].creator.username + ", ";
-    hostedResult += hosted[i].name + ", ";
+  	hostedResult += "HOST,"
+    hostedResult += hosted[i].creator.username + ",";
+    hostedResult += hosted[i].name + ",";
 
     if (hosted[i].attendees.length > 0) {
-      hostedResult += hosted[i].desc + ", ";
-      hostedResult += "Attendees: ";
+      hostedResult += hosted[i].desc + ",";
+      // hostedResult += "Attendees:";
 
       for (var j = 0; j < hosted[i].attendees.length; j++) {
           if (j < hosted[i].attendees.length - 1) {
-              hostedResult += hosted[i].attendees[j].user.username + ", ";
+              hostedResult += hosted[i].attendees[j].user.username + ",";
           }
           else {
               hostedResult += hosted[i].attendees[j].user.username;
@@ -199,26 +200,26 @@ app.get('/android-events', function(req, res) {
       hostedResult += hosted[i].desc + "";
     }
 
-
-    hostedResult += "\n | ";
+    hostedResult += "\n";
   }
 
 
-  var attendingResult = "Attending: ";
+  var attendingResult = "";
 
   for (var i = 0; i < attending.length; i++) {
     var mEvent = attending[i].mEvent;
 
-    attendingResult += mEvent.creator.username + ", ";
-    attendingResult += mEvent.name + ", ";
+    attendingResult += "ATTENDING,"
+    attendingResult += mEvent.creator.username + ",";
+    attendingResult += mEvent.name + ",";
 
     if (mEvent.attendees.length > 0) {
-      attendingResult += mEvent.desc + ", ";
-      attendingResult += "Attendees: ";
+      attendingResult += mEvent.desc + ",";
+      // attendingResult += "Attendees:";
 
       for (var j = 0; j < mEvent.attendees.length; j++) {
           if (j < mEvent.attendees.length - 1) {
-              attendingResult += mEvent.attendees[j].user.username + ", ";
+              attendingResult += mEvent.attendees[j].user.username + ",";
           }
           else {
               attendingResult += mEvent.attendees[j].user.username;
@@ -229,23 +230,23 @@ app.get('/android-events', function(req, res) {
       attendingResult += mEvent.desc + "";
     }
 
-
-    attendingResult += "\n | ";
+    attendingResult += "\n";
   }
 
-  var otherResult = "Other: ";
+  var otherResult = "";
 
   for (var i = 0; i < other.length; i++) {
-    otherResult += other[i].creator.username + ", ";
-    otherResult += other[i].name + ", ";
+  	other += "OTHER,";
+    otherResult += other[i].creator.username + ",";
+    otherResult += other[i].name + ",";
 
     if (other[i].attendees.length > 0) {
-      otherResult += other[i].desc + ", ";
-      otherResult += "Attendees: ";
+      otherResult += other[i].desc + ",";
+      // otherResult += "Attendees:";
 
       for (var j = 0; j < other[i].attendees.length; j++) {
           if (j < other[i].attendees.length - 1) {
-              otherResult += other[i].attendees[j].user.username + ", ";
+              otherResult += other[i].attendees[j].user.username + ",";
           }
           else {
               otherResult += other[i].attendees[j].user.username;
@@ -257,7 +258,7 @@ app.get('/android-events', function(req, res) {
     }
 
 
-    otherResult += "\n | ";
+    otherResult += "\n";
   }
 
   res.send("" + hostedResult + "\n" + attendingResult + "\n" + otherResult);
