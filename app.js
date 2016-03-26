@@ -67,8 +67,6 @@ app.use(testmw);
 //////////////////////////////////////////////////////////////////////
 var team = require('./lib/team.js');
 
-//Student: Tommy Nguyen
-//ID: 28127694
 
 app.get('/', (req, res) => {
   // TODO
@@ -97,90 +95,6 @@ app.get('/team', (req, res) => {
   }
 });
 
-//Individual team members below.
-app.get('/team/jdoe', (req, res) => {
-  var result = team.one('jdoe');
-  if (!result.success) {
-    notFound404(req, res);
-  } else {
-    res.render('team', {
-      members: result.data,
-      pageTestScript: '/qa/tests-team.js'
-    });
-  }
-});
-
-app.get('/team/tdnguyen', (req, res) => {
-  var result = team.one('tdnguyen');
-  if (!result.success) {
-    notFound404(req, res);
-  } else {
-    res.render('team', {
-      members: result.data,
-      pageTestScript: '/qa/tests-team.js'
-    });
-  }
-});
-
-app.get('/team/slambrou', (req, res) => {
-  var result = team.one('slambrou');
-  if (!result.success) {
-    notFound404(req, res);
-  } else {
-    res.render('team', {
-      members: result.data,
-      pageTestScript: '/qa/tests-team.js'
-    });
-  }
-});
-
-app.get('/team/jinhuiliang', (req, res) => {
-  var result = team.one('jinhuiliang');
-  if (!result.success) {
-    notFound404(req, res);
-  } else {
-    res.render('team', {
-      members: result.data,
-      pageTestScript: '/qa/tests-team.js'
-    });
-  }
-});
-
-app.get('/team/mccaffre', (req, res) => {
-  var result = team.one('mccaffre');
-  if (!result.success) {
-    notFound404(req, res);
-  } else {
-    res.render('team', {
-      members: result.data,
-      pageTestScript: '/qa/tests-team.js'
-    });
-  }
-});
-
-app.get('/team/sorloff', (req, res) => {
-  var result = team.one('sorloff');
-  if (!result.success) {
-    notFound404(req, res);
-  } else {
-    res.render('team', {
-      members: result.data,
-      pageTestScript: '/qa/tests-team.js'
-    });
-  }
-});
-
-app.get('/team/dhnguyen', (req, res) => {
-  var result = team.one('dhnguyen');
-  if (!result.success) {
-    notFound404(req, res);
-  } else {
-    res.render('team', {
-      members: result.data,
-      pageTestScript: '/qa/tests-team.js'
-    });
-  }
-});
 
 //////////////////////////////////////////////////////////////////////
 ///// Error Middleware ///////////////////////////////////////////////
