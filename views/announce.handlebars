@@ -1,0 +1,23 @@
+<link href="css/announce.css" type="text/css" rel="stylesheet">
+
+<div class="announce container">
+  <div class="col-md-4">
+
+  </div>
+
+  <div class="col-md-4 announceBox">
+    <h2>
+      You are deciding on the winner for the Event: {{eventName}}
+    </h2>
+
+    <form method="post" action="/winner?id={{eventID}}" style="margin-top: 15%; margin-bottom: 15%;">
+      <input type="text" placeholder="Winning number" name="winner">
+      <button class="btn-primary"> Submit </button>
+    </form>
+  </div>
+
+  <div class="col-md-4">
+
+  </div>
+
+</div>

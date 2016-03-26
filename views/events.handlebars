@@ -46,6 +46,10 @@
   </div>
 
   <div class="eventList col-md-8">
+    <span id="hostedSize" style="display: none;"> {{hosted.length}} </span>
+    <span id="attendingSize" style="display: none;"> {{attending.length}} </span>
+    <span id="otherSize" style="display: none;"> {{other.length}} </span>
+
     {{#each hosted}}
       <div class="event container">
         <div class="col-md-3">
@@ -65,11 +69,12 @@
             {{/each}}
           </ul>
 
-          <button class="btn btn-primary">
-            Announce Winner!
-          </button>
+          <a href="/announce?eventID={{this.id}}">
+            <button class="btn btn-primary">
+              Announce Winner!
+            </button>
+          </a>
 
-          <input style="margin-left: 10px;" type="text" name="winner" placeholder="Enter winning number here">
 
         </div>
       </div>
@@ -92,6 +97,14 @@
               </li>
             {{/each}}
           </ul>
+
+          <form method="post" action="/join" style="margin-top: 15%; margin-bottom: 15%;">
+            <input type="text" placeholder="username" name="username" value={{this.mEvent.currentUser}}>
+            <input type="hidden" name="eventID" value={{this.mEvent.id}}>
+            <input type="text" placeholder="Enter Number" name="number">
+            <button class="btn-primary"> Join </button>
+          </form>
+
         </div>
       </div>
     {{/each}}
@@ -113,6 +126,14 @@
               </li>
             {{/each}}
           </ul>
+
+          <form method="post" action="/join" style="margin-top: 15%; margin-bottom: 15%;">
+            <input type="text" placeholder="username" name="username" value={{this.currentUser}}>
+            <input type="hidden" name="eventID" value={{this.id}}>
+            <input type="text" placeholder="Enter Number" name="number">
+            <button class="btn-primary"> Join </button>
+          </form>
+
         </div>
       </div>
     {{/each}}
@@ -122,3 +143,6 @@
 
   </div>
 </div>
+
+<script   src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>
+<script src="/js/events.js"></script>
