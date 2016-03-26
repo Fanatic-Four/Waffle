@@ -8,42 +8,16 @@ var handlebars = require('express-handlebars');
 ///// Express App Setup //////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 
-// The express library is a simple function. When you invoke this
-// function it returns an express web application that you build from.
 var app = express();
 
-// This will set an "application variable". An application variable is
-// a variable that can be retrieved from your app later on. It is
-// simply a key/value mapping. In this case, we are mapping the key
-// 'port' to a port number. The port number will either be what you
-// set for PORT as an environment variable (google this if you do not
-// know what an evironment variable is) or port 3000.
 app.set('port', process.env.PORT || 3000);
 
-// This does the setup for handlebars. It first creates a new
-// handlebars object giving it the default layout. This indicates
-// that the default layout is called main.js in the views/layouts
-// directory. We then set the app's view engine to 'handlebars' - this
-// lets your express app know what the view engine is. We then set an
-// app variable 'view engine' to 'handlebars'. This is mostly boiler
-// plate so you need not worry about the details.
 var view = handlebars.create({ defaultLayout: 'main' });
 app.engine('handlebars', view.engine);
 app.set('view engine', 'handlebars');
 
-// This does the setup for static file serving. It uses express'
-// static middleware to look for files in /public if no other route
-// matches. We use the __dirname special variable which indicates the
-// directory this server is running in and append it to '/public'.
 app.use(express.static(__dirname + '/public'));
 
-// The `testmw` function represents out testing middleware. We use
-// this in our views to conditionally include the Mocha and Chai
-// testing framework as well as our own tests. Because this is a
-// middleware function it expects to receive the request object
-// (`req`), response object (`res`), and `next` function as arguments.
-// The `next` function is used to continue processing the request
-// with subsequent routes.
 function testmw(req, res, next) {
   // This checks the 'env' application variable to determine if we are
   // in "production" mode. An application is in "production" mode if
@@ -66,6 +40,9 @@ app.use(testmw);
 ///// User Defined Routes ////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////
 var team = require('./lib/team.js');
+
+var users = require('./lib/users.js');
+var events = require('./lib/events.js');
 
 
 app.get('/', (req, res) => {
