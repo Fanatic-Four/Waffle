@@ -38,6 +38,7 @@ app.get('/', function(req, res) {
 
 app.get('/test', function(req, res) {
     userCol.createUser("myatnoe", "password", "MyatNoe", "Aint", "6176429478", [])
+    res.render('index')
 });
 
 //Testing for dummy events:
