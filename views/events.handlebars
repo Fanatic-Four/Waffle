@@ -57,42 +57,26 @@
     </div>
   </div>
 
-
-
-  <div class="col-md-2">
-
-  </div>
-
-  <div class="eventList col-md-8">
+  <div class="eventList">
     <span id="hostedSize" style="display: none;"> {{hosted.length}} </span>
     <span id="attendingSize" style="display: none;"> {{attending.length}} </span>
     <span id="otherSize" style="display: none;"> {{other.length}} </span>
-
+    <div class="event">
+        <h3>
+          Raffles you are organizing..
+        </h3>
+    </div>
     {{#each hosted}}
       <div class="event container">
-        <div class="col-md-4 leftHand">
-          <h2 style="">
-            Event:
-          </h2>
-
           <h3>
             {{this.name}}
           </h3>
-
-          <h2 style="">
-            Organizer:
-          </h2>
-          <h3>
-            You!
-          </h3>
-
-          <h2 style="">
-            Brief Description:
-          </h2>
+          <div class="event-body">
+        <div class="col-md-5">
           {{this.desc}}
         </div>
 
-        <div class="col-md-8" style="text-align: center; margin-top: 15%;">
+        <div class="col-md-7" style="text-align: center;">
           <ul>
             {{#each this.attendees}}
               <li>
@@ -101,33 +85,31 @@
             {{/each}}
           </ul>
 
-          <a href="/announce?eventID={{this.id}}">
-            <button class="btn btn-primary">
-              Announce Winner!
-            </button>
-          </a>
 
+      </div>
+      <a href="/announce?eventID={{this.id}}">
+        <button class="btn btn-primary">
+          Announce Winner!
+        </button>
+      </a>
 
         </div>
       </div>
     {{/each}}
+</div>
+<!--
+<div class="eventList">
+
     {{#each attending}}
       <div class="event container">
-        <div class="col-md-4 leftHand">
-
-          <h2 style="">
-            Event:
-          </h2>
+        <div class="col-md-5">
 
           <h3>
-            {{this.mEvent.name}} | You are attending!
+            {{this.mEvent.name}}
           </h3>
 
-          <h2 style="">
-            Organizer:
-          </h2>
           <h3>
-            {{this.mEvent.creator.username}}
+            Organized by {{this.mEvent.creator.username}}
           </h3>
 
           <h2 style="">
@@ -137,7 +119,7 @@
 
         </div>
 
-        <div class="col-md-8" style="text-align: center; margin-top: 15%;">
+        <div class="col-md-7" style="text-align: center; margin-top: 15%;">
           <ul>
             {{#each this.mEvent.attendees}}
               <li>
@@ -156,32 +138,31 @@
         </div>
       </div>
     {{/each}}
+</div>
+-->
 
+<div class="eventList">
+    <div class="event">
+        <h3>
+          Other Raffle Events..
+        </h3>
+    </div>
     {{#each other}}
       <div class="event container">
-        <div class="col-md-4 leftHand">
-          <h2 style="">
-            Event:
-          </h2>
 
           <h3>
             {{this.name}}
           </h3>
 
-          <h2 style="">
-            Organizer:
-          </h2>
+          <div class="event-body col-md-5">
           <h3>
-            {{this.creator.username}}
+            Organized by {{this.creator.username}}
           </h3>
 
-          <h2 style="">
-            Brief Description:
-          </h2>
           {{this.desc}}
         </div>
 
-        <div class="col-md-8" style="text-align: center; margin-top: 15%;">
+        <div class="event-body col-md-7" style="text-align: center;">
           <ul>
             {{#each this.attendees}}
               <li>
@@ -202,9 +183,6 @@
     {{/each}}
   </div>
 
-  <div class="col-md-2">
-
-  </div>
 </div>
 
 <script   src="https://code.jquery.com/jquery-2.2.2.min.js"   integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="   crossorigin="anonymous"></script>

@@ -70,7 +70,7 @@ userCol.addEvent(dummy1, event4, 100);
 
 app.post('/login', function(req, res) {
 
-    console.log(req);
+    //console.log(req);
 
     var username = req.body.username;
     var password = req.body.password;
@@ -115,7 +115,7 @@ app.post('/signup', function(req, res) {
 app.get('/events', function(req, res) {
 
   var username = req.query.username;
-  var currentUser = userCol.getUsers()[username];  
+  var currentUser = userCol.getUsers()[username];
   var attending = userCol.getUsers()[username].events;
 
   //console.log(attending);
@@ -146,7 +146,7 @@ app.get('/events', function(req, res) {
 
   //console.log(currentEvents);
 
-  //console.log(other);
+  console.log(attending);
 
   res.render('events', {
     hosted: hosted,
@@ -186,9 +186,6 @@ app.get('/android-events', function(req, res) {
     }
   }
 
-  console.log("hosting", hosted);
-  console.log("attending", attending);
-  console.log("other" + other);
 
   for (var i = 0; i < other.length; i++) {
     console.log(other[i].creator.username);

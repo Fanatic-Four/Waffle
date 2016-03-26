@@ -1,16 +1,15 @@
 .page {
-  width: 1200px;
   text-align: center;
-  color: #96BBCB;
+  width: 1000px;
 }
 
 .eventList {
   border: 1px solid #909eb4;
   border-radius: 10px;
+  margin-bottom: 20px;
 }
 
 .event {
-  color: #1a8cff;
   border-bottom: 1px solid #909eb4;
   width: 100%;
   padding-top: 2%;
@@ -21,6 +20,10 @@
   margin: 3px;
 }
 
-.leftHand {
+.event-body {
+    padding : 40px 0;
+}
 
+ul {
+    list-style: none;
 }
