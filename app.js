@@ -73,6 +73,10 @@ app.post('/signup', function(req, res) {
   }
 });
 
+app.get('/events', function(req, res) {
+  
+});
+
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port:', app.get('port'));
 });
