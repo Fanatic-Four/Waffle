@@ -6,15 +6,6 @@ var handlebars = require('express-handlebars');
 
 app.use(express.static(__dirname + '/public'));
 
-var uristring = 'mongodb://heroku_xvxr827b:735klrc3ennhtqa8b1u2437fo2@ds025459.mlab.com:25459/heroku_xvxr827b';
-mongoose.connect(uristring, function (err, res) {
-    if (err) {
-        console.log ('ERROR connecting to: ' + uristring + '. ' + err);
-    } else {
-        console.log ('Succeeded connected to: ' + uristring);
-    }
-});
-
 app.set('port', (process.env.PORT || 3000));
 
 var userCol = require('./lib/users.js');
