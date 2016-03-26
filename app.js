@@ -42,21 +42,31 @@ app.get('/test', function(req, res) {
 });
 
 //Testing for dummy events:
-var user = userCol.createUser("user", "password", "MyatNoe", "Aint", "7322771111");
-var myat = userCol.createUser("myatnoe", "password", "MyatNoe", "Aint", "7322771111", []);
+var dummy1 = userCol.createUser("John", "password", "John", "Parker", "7322771111");
+var dummy2 = userCol.createUser("myatnoe", "password", "MyatNoe", "Aint", "7322771111", []);
+var dummy3 = userCol.createUser("Wayde", "password", "Wayde", "Smith", "7322771111");
+var dummy4 = userCol.createUser("Brian", "password", "Brian", "Cooper", "7322771111");
+var dummy5 = userCol.createUser("Edison", "password", "Edison", "Hatley", "7322771111");
+var dummy6 = userCol.createUser("Charlie", "password", "Charlie", "Baker", "7322771111");
 
-var event1 = eventCol.createEvent(user, "name1", "desc1");
-var event2 = eventCol.createEvent(user, "name2", "desc2");
-var event3 = eventCol.createEvent(user, "name3", "desc3");
-var event4 = eventCol.createEvent(myat, "name4", "desc4");
-var event5 = eventCol.createEvent(myat, "name5", "desc5");
+var event1 = eventCol.createEvent(dummy1, "Chocolate Raffle", "Raffle for chocolate! If you are the winner, please email me at jparker@chocolate.com with a picture of your ticket.");
+var event2 = eventCol.createEvent(dummy2, "Super Bowl Raffle", "Raffle for $$ for the superbowl!! If you are the winner, please email me at myatnoe@superbowl.com with a picture of your ticket.");
+var event3 = eventCol.createEvent(dummy3, "Ice Cream Raffle", "Raffle for ice cream!! If you are the winner, please email me at wsmith@icecream.com with a picture of your ticket.");
+var event4 = eventCol.createEvent(dummy4, "Board Games Raffle", "Raffle for cards against humanity!! If you are the winner, please email me at boardgames@cah.com with a picture of your ticket.");
+var event5 = eventCol.createEvent(dummy5, "Whiteboard Raffle", "Raffle for ");
+var event5 = eventCol.createEvent(dummy6, "Oculus Rift Raffle", "desc5");
 
-eventCol.addUser(event1, user, 101);
-eventCol.addUser(event1, user, 102);
-eventCol.addUser(event1, user, 103);
+eventCol.addUser(event1, dummy6, 101);
+userCol.addEvent(dummy6, event1, 101);
 
-eventCol.addUser(event4, user, 100);
-userCol.addEvent(user.username, event4, 100);
+eventCol.addUser(event2, dummy5, 102);
+userCol.addEvent(dummy5, event2, 102);
+
+eventCol.addUser(event3, dummy4, 103);
+userCol.addEvent(dummy4, event3, 103);
+
+eventCol.addUser(event4, dummy1, 100);
+userCol.addEvent(dummy1, event4, 100);
 
 app.post('/login', function(req, res) {
 
