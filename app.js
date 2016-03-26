@@ -42,8 +42,8 @@ app.get('/test', function(req, res) {
 });
 
 //Testing for dummy events:
-var user = userCol.createUser("user", "password", "MyatNoe", "Aint", "6176429478");
-var myat = userCol.createUser("myatnoe", "password", "MyatNoe", "Aint", "6176429478", []);
+var user = userCol.createUser("user", "password", "MyatNoe", "Aint", "7322771111");
+var myat = userCol.createUser("myatnoe", "password", "MyatNoe", "Aint", "7322771111", []);
 
 var event1 = eventCol.createEvent(user, "name1", "desc1");
 var event2 = eventCol.createEvent(user, "name2", "desc2");
@@ -123,7 +123,7 @@ app.get('/events', function(req, res) {
     else {
       var isAttending = false;
 
-      for (var j = 0; j < attending.length; j++) {        
+      for (var j = 0; j < attending.length; j++) {
         if(attending[j].mEvent.id === currentEvents[i].id || currentEvents[i].creator.username === username) {
           isAttending = true;
         }
@@ -147,36 +147,120 @@ app.get('/events', function(req, res) {
 });
 
 app.get('/android-events', function(req, res) {
-  var currentEvents = eventCol.getEvents();
+  var username = req.query.username;
+  var attending = userCol.getUsers()[username].events;
 
-  var result = "";
+  //console.log(attending);
+
+  var currentEvents = eventCol.getEvents();
+  var hosted = [];
+
+  var other = [];
 
   for (var i = 0; i < currentEvents.length; i++) {
-    result += currentEvents[i].creator.username + ", ";
-    result += currentEvents[i].name + ", ";
+    if (currentEvents[i].creator.username === username) {
+      hosted.push(currentEvents[i]);
+    }
+    else {
+      var isAttending = false;
 
-    if (currentEvents[i].attendees.length > 0) {
-      result += currentEvents[i].desc + ", ";
-      result += "Attendees: ";
+      for (var j = 0; j < attending.length; j++) {
+        if(attending[j].mEvent.id === currentEvents[i].id || currentEvents[i].creator.username === username) {
+          isAttending = true;
+        }
+      }
 
-      for (var j = 0; j < currentEvents[i].attendees.length; j++) {
-          if (j < currentEvents[i].attendees.length - 1) {
-              result += currentEvents[i].attendees[j].user.username + ", ";
+      if (!isAttending) {
+          other.push(currentEvents[i]);
+      }
+    }
+  }
+
+  var hostedResult = "Organizing: ";
+
+  for (var i = 0; i < hosted.length; i++) {
+    hostedResult += hosted[i].creator.username + ", ";
+    hostedResult += hosted[i].name + ", ";
+
+    if (hosted[i].attendees.length > 0) {
+      hostedResult += hosted[i].desc + ", ";
+      hostedResult += "Attendees: ";
+
+      for (var j = 0; j < hosted[i].attendees.length; j++) {
+          if (j < hosted[i].attendees.length - 1) {
+              hostedResult += hosted[i].attendees[j].user.username + ", ";
           }
           else {
-              result += currentEvents[i].attendees[j].user.username;
+              hostedResult += hosted[i].attendees[j].user.username;
           }
       }
     }
     else {
-      result += currentEvents[i].desc + "";
+      hostedResult += hosted[i].desc + "";
     }
 
 
-    result += "\n | ";
+    hostedResult += "\n | ";
   }
 
-  res.send("" + result);
+
+  var attendingResult = "Attending: ";
+
+  for (var i = 0; i < attending.length; i++) {
+    var mEvent = attending[i].mEvent;
+
+    attendingResult += mEvent.creator.username + ", ";
+    attendingResult += mEvent.name + ", ";
+
+    if (mEvent.attendees.length > 0) {
+      attendingResult += mEvent.desc + ", ";
+      attendingResult += "Attendees: ";
+
+      for (var j = 0; j < mEvent.attendees.length; j++) {
+          if (j < mEvent.attendees.length - 1) {
+              attendingResult += mEvent.attendees[j].user.username + ", ";
+          }
+          else {
+              attendingResult += mEvent.attendees[j].user.username;
+          }
+      }
+    }
+    else {
+      attendingResult += mEvent.desc + "";
+    }
+
+
+    attendingResult += "\n | ";
+  }
+
+  var otherResult = "Other: ";
+
+  for (var i = 0; i < other.length; i++) {
+    otherResult += other[i].creator.username + ", ";
+    otherResult += other[i].name + ", ";
+
+    if (other[i].attendees.length > 0) {
+      otherResult += other[i].desc + ", ";
+      otherResult += "Attendees: ";
+
+      for (var j = 0; j < other[i].attendees.length; j++) {
+          if (j < other[i].attendees.length - 1) {
+              otherResult += other[i].attendees[j].user.username + ", ";
+          }
+          else {
+              otherResult += other[i].attendees[j].user.username;
+          }
+      }
+    }
+    else {
+      otherResult += other[i].desc + "";
+    }
+
+
+    otherResult += "\n | ";
+  }
+
+  res.send("" + hostedResult + "\n" + attendingResult + "\n" + otherResult);
 });
 
 
@@ -184,6 +268,10 @@ var twilio = require('./lib/twilio_msg.js');
 app.get('/winner', function(req, res) {
   var eventID = req.query.id;
   var winningNum = req.query.winner;
+
+  ///var eventID = req.body.id;
+  //var winningNum = req.body.winner;
+
   var currentEvents = eventCol.getEvents();
 
   console.log(eventID);
@@ -201,7 +289,7 @@ app.get('/winner', function(req, res) {
 
         if ("" + attendees[j].number === "" + winningNum) {
           res.send("Username: " + attendees[j].user.username + " | Phone Number: "  + attendees[j].user.phone);
-          twilio.sendMessage(attendees[j].user.username, attendees[j].user.phone)
+          twilio.sendMessage(attendees[j].user.username, attendees[j].user.phone, currentEvents[i].name);
           sent = true;
         }
       }

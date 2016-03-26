@@ -12,7 +12,8 @@
     "express": "^4.13.3",
     "express-handlebars": "^3.0.0",
     "handlebars": "^4.0.5",
-    "mongoose": "^4.4.10"
+    "mongoose": "^4.4.10",
+    "twilio": "^2.9.0"
   },
   "engines": {
     "node": "0.12.7"
