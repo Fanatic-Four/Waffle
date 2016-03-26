@@ -176,6 +176,14 @@ app.get('/android-events', function(req, res) {
     }
   }
 
+  console.log("hosting", hosted);
+  console.log("attending", attending);
+  console.log("other" + other);
+
+  for (var i = 0; i < other.length; i++) {
+    console.log(other[i].creator.username);
+  }
+
   var hostedResult = "";
 
   for (var i = 0; i < hosted.length; i++) {
@@ -202,6 +210,8 @@ app.get('/android-events', function(req, res) {
 
     hostedResult += "\n";
   }
+
+  console.log(hostedResult);
 
 
   var attendingResult = "";
@@ -233,10 +243,13 @@ app.get('/android-events', function(req, res) {
     attendingResult += "\n";
   }
 
+  console.log(attendingResult);
+
   var otherResult = "";
 
   for (var i = 0; i < other.length; i++) {
-  	other += "OTHER,";
+  	otherResult += "OTHER,";
+    console.log("Hello" + other[i]);
     otherResult += other[i].creator.username + ",";
     otherResult += other[i].name + ",";
 
