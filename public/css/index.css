@@ -17,3 +17,8 @@
 .login * {
   margin: 3px;
 }
+
+.modal {
+  top: 10%;
+  left: 30%;
+}

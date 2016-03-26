@@ -13,7 +13,7 @@ var eventCol = require('./lib/events.js');
 var bodyParser = require('body-parser');
 
 //Handlebars
-var view = handlebars.create();
+var view = handlebars.create({ defaultLayout: 'main' });
 app.engine('handlebars', view.engine);
 app.set('view engine', 'handlebars');
 
