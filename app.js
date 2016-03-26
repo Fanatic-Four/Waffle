@@ -104,7 +104,25 @@ app.post('/signup', function(req, res) {
 
 app.get('/events', function(req, res) {
 
+  var username = req.query.username;
+  var attending = userCol.getUsers()[username].events;
+
   var currentEvents = eventCol.getEvents();
+  var hosted = [];
+
+  var other = [];
+
+  for (var i = 0; i < currentEvents.length; i++) {
+    if (currentEvents[i].creator.username === username) {
+      hosted.push(currentEvents[i]);
+    }
+    else {
+      for (var j = 0; j < attending.length; j++) {
+
+      }
+      currentEvents[i].creator.attendees;
+    }
+  }
 
   console.log(currentEvents);
 
@@ -156,7 +174,7 @@ app.get('/winner', function(req, res) {
 
   var sent = false;
 
-  for (var i = 0; i < currentEvents.length; i++) {    
+  for (var i = 0; i < currentEvents.length; i++) {
 
     if ("" + currentEvents[i].id === "" + eventID) {
 
@@ -185,7 +203,9 @@ app.post('/add-event', function(req, res) {
 
   creator = userCol.getUsers()[creator];
 
-  res.redirect('/events');
+  eventCol.createEvent(creator, eventName, desc);
+
+  res.redirect('/events?username=' + creator.username);
 
 });
 
@@ -195,6 +215,8 @@ app.post('/android-add-event', function(req, res) {
   var desc = req.body.desc;
 
   creator = userCol.getUsers()[creator];
+
+  eventCol.createEvent(creator, eventName, desc);
 
   res.send("Successfully added event.");
 });
