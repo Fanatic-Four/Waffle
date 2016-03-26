@@ -12,9 +12,18 @@
 
   <div class="eventList col-md-8">
     {{#each events}}
-      <h2>
+      <div class="event">
+        {{this.name}}
+        {{this.creator}}
         {{this.desc}}
-      </h2>
+        <ul>
+          {{#each this.attendees}}
+            <li>
+              User: {{this.user}} | Number: {{this.number}}
+            </li>
+          {{/each}}
+        </ul>
+      </div>
     {{/each}}
   </div>
 
